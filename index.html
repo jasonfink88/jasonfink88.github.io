@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jason Fink — Author</title>
+<meta name="description" content="Jason Fink writes science fiction, short stories, and urban fantasy. Author of Quantum Prosthetics, Selected Shorts (And Some Pants), and Jasmine Cowl and the Salagi Talking Stick.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#22323b;
+    --ink-soft:#445661;
+    --paper:#ece2c6;
+    --paper-deep:#e1d4ad;
+    --paper-card:#f5efdd;
+    --line: rgba(34,50,59,0.22);
+    --teal:#3c6a5e;
+    --teal-deep:#2c4f46;
+    --brick:#9a4337;
+    --brick-deep:#7c3328;
+    --shadow: 0 18px 40px -20px rgba(34,50,59,0.35);
+    --radius: 2px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    background-image:
+      radial-gradient(rgba(34,50,59,0.05) 1px, transparent 1px);
+    background-size:3px 3px;
+    opacity:0.5;
+    z-index:0;
+  }
+
+  .skip-link{
+    position:absolute; left:-999px; top:auto;
+  }
+  .skip-link:focus{
+    left:1rem; top:1rem; z-index:999;
+    background:var(--ink); color:var(--paper);
+    padding:.5rem 1rem; border-radius:var(--radius);
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  em{ font-style:italic; color:var(--teal-deep); }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 1.5rem;
+    position:relative;
+    z-index:1;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--brick-deep);
+    margin:0 0 0.9rem;
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px; height:1px;
+    background:var(--brick-deep);
+    display:inline-block;
+  }
+
+  /* ---------- header ---------- */
+  .site-header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(236,226,198,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0.9rem 1.5rem;
+  }
+  .wordmark{
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:0.92rem;
+    letter-spacing:0.06em;
+    text-decoration:none;
+  }
+  .wordmark-dot{ color:var(--brick); }
+  .site-nav{ display:flex; gap:1.4rem; }
+  .site-nav a{
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    text-decoration:none;
+    color:var(--ink-soft);
+    letter-spacing:0.03em;
+    padding:0.2rem 0;
+    border-bottom:1px solid transparent;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .site-nav a:hover, .site-nav a:focus-visible{
+    color:var(--teal-deep);
+    border-bottom-color:var(--teal-deep);
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:4.5rem 0 4rem;
+    overflow:hidden;
+    scroll-margin-top:70px;
+  }
+  .hero-inner{ max-width:680px; }
+  .hero-title{
+    font-size:clamp(1.9rem, 4.4vw, 2.85rem);
+    line-height:1.16;
+    margin-bottom:1.2rem;
+  }
+  .hero-sub{
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin-bottom:1.9rem;
+  }
+  .hero-cta{ display:flex; gap:0.9rem; flex-wrap:wrap; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:0.4rem;
+    font-family:'Space Mono', monospace;
+    font-size:0.82rem;
+    letter-spacing:0.03em;
+    text-decoration:none;
+    padding:0.75rem 1.3rem;
+    border-radius:var(--radius);
+    border:1px solid var(--ink);
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .btn-primary{ background:var(--ink); color:var(--paper-card); }
+  .btn-primary:hover{ background:var(--teal-deep); border-color:var(--teal-deep); transform:translateY(-2px); }
+  .btn-ghost{ background:transparent; color:var(--ink); }
+  .btn-ghost:hover{ background:var(--ink); color:var(--paper-card); transform:translateY(-2px); }
+  .btn:focus-visible{ outline:2px solid var(--teal-deep); outline-offset:2px; }
+
+  .hero-stamp{
+    position:absolute;
+    top:2.2rem; right:4%;
+    width:148px; height:148px;
+    border:2px dashed var(--brick);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--brick);
+    transform:rotate(-11deg);
+    opacity:0.85;
+  }
+  @media (max-width:760px){ .hero-stamp{ display:none; } }
+
+  /* ---------- field notes ---------- */
+  .notes{
+    padding:4rem 0;
+    border-top:1px solid var(--line);
+    scroll-margin-top:70px;
+  }
+  .notes h2{ font-size:clamp(1.5rem,3vw,2rem); margin-bottom:1.6rem; max-width:30ch; }
+  .notes-body{ max-width:62ch; }
+  .notes-body p{ margin:0 0 1.1rem; color:var(--ink); }
+
+  .fn-mark{
+    font-family:'Space Mono', monospace;
+    background:none; border:none; cursor:pointer;
+    color:var(--brick-deep);
+    font-size:0.85em;
+    padding:0 0.12em;
+    vertical-align:super;
+    line-height:1;
+  }
+  .fn-mark:hover, .fn-mark[aria-expanded="true"]{ color:var(--teal-deep); }
+  .fn-note{
+    display:none;
+    font-family:'Space Mono', monospace;
+    font-size:0.82rem;
+    line-height:1.5;
+    color:var(--ink-soft);
+    background:var(--paper-card);
+    border-left:2px solid var(--brick);
+    padding:0.6rem 0.85rem;
+    margin:0.35rem 0 0.9rem;
+    max-width:44ch;
+  }
+  .fn-note.open{ display:block; }
+
+  .passport{
+    margin-top:2.6rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.1rem 1.3rem;
+  }
+  .stamp{
+    width:130px;
+    padding:0.85rem 0.7rem 0.75rem;
+    border:1.5px solid var(--ink);
+    border-radius:var(--radius);
+    background:var(--paper-card);
+    box-shadow:var(--shadow);
+    font-family:'Space Mono', monospace;
+    text-align:center;
+    opacity:0;
+    transform:translateY(14px) rotate(var(--r,0deg));
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .stamp.in-view{ opacity:1; transform:translateY(0) rotate(var(--r,0deg)); }
+  .stamp .code{
+    font-weight:700; font-size:1.05rem;
+    letter-spacing:0.06em;
+    color:var(--teal-deep);
+  }
+  .stamp .place{ font-size:0.66rem; letter-spacing:0.04em; margin:0.25rem 0 0.4rem; color:var(--ink); }
+  .stamp .what{ font-size:0.62rem; line-height:1.35; color:var(--ink-soft); }
+  .stamp hr{ border:none; border-top:1px dashed var(--line); margin:0.4rem 0; }
+
+  /* ---------- books ---------- */
+  .books{
+    padding:4.5rem 0;
+    background:var(--paper-deep);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    scroll-margin-top:70px;
+  }
+  .books h2{ font-size:clamp(1.5rem,3vw,2rem); margin-bottom:0.6rem; max-width:30ch; }
+  .books > .wrap > p.section-sub{
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink-soft);
+    max-width:50ch;
+    margin:0 0 2.6rem;
+  }
+  .book-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.6rem;
+  }
+  @media (max-width:880px){ .book-grid{ grid-template-columns:1fr; max-width:480px; margin:0 auto;} }
+
+  .book-card{
+    background:var(--paper-card);
+    border:1px solid var(--ink);
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+  }
+  .book-cover{
+    padding:2.2rem 1.4rem 1.6rem;
+    color:var(--paper-card);
+    display:flex; flex-direction:column; justify-content:space-between;
+    min-height:200px;
+  }
+  .book-quantum .book-cover{ background:linear-gradient(160deg, var(--teal-deep), var(--teal)); }
+  .book-shorts .book-cover{ background:linear-gradient(160deg, #4a4030, #6b5c3f); }
+  .book-jasmine .book-cover{ background:linear-gradient(160deg, var(--brick-deep), var(--brick)); }
+
+  .book-tag{
+    font-family:'Space Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    opacity:0.85;
+  }
+  .book-cover h3{
+    font-size:1.55rem;
+    color:#fbf6e8;
+    line-height:1.18;
+    margin-top:0.8rem;
+  }
+  .book-meta{
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    opacity:0.8;
+    margin-top:0.7rem;
+  }
+  .book-body{
+    padding:1.4rem 1.4rem 1.6rem;
+    display:flex; flex-direction:column; gap:1rem; flex:1;
+  }
+  .book-body p{ font-size:0.92rem; color:var(--ink); margin:0; flex:1; }
+  .book-body .btn{ align-self:flex-start; }
+
+  /* ---------- free fiction ---------- */
+  .free-fiction{ padding:4rem 0; scroll-margin-top:70px; }
+  .free-fiction h2{ font-size:clamp(1.4rem,2.8vw,1.9rem); margin-bottom:0.9rem; }
+  .free-intro{ max-width:56ch; color:var(--ink-soft); margin-bottom:2.4rem; }
+
+  .serial-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1.4rem;
+  }
+  @media (max-width:760px){ .serial-grid{ grid-template-columns:1fr; } }
+
+  .serial-card{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-left:3px solid var(--brick);
+    padding:1.5rem 1.6rem;
+    display:flex; flex-direction:column; gap:0.8rem;
+  }
+  .serial-card.serial-memory{ border-left-color:var(--teal); }
+  .serial-tag{
+    font-family:'Space Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .serial-card h3{ font-size:1.2rem; line-height:1.25; margin:0; }
+  .serial-card p{ font-size:0.92rem; color:var(--ink); margin:0; flex:1; }
+  .serial-link{
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    text-decoration:none;
+    color:var(--teal-deep);
+    border-bottom:1px solid var(--teal-deep);
+    width:max-content;
+    padding-bottom:0.1rem;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .serial-link:hover{ color:var(--brick-deep); border-color:var(--brick-deep); }
+
+  /* ---------- footer ---------- */
+  .site-footer{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .footer-inner{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:2rem;
+    padding:3rem 1.5rem 2rem;
+  }
+  .footer-wordmark{
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    letter-spacing:0.06em;
+    margin:0 0 0.5rem;
+  }
+  .footer-tag{ color:#c9c0a4; max-width:32ch; font-size:0.88rem; margin:0; }
+  .footer-links{ display:flex; flex-direction:column; gap:0.6rem; }
+  .footer-links a{
+    font-family:'Space Mono', monospace;
+    font-size:0.82rem;
+    text-decoration:none;
+    color:var(--paper);
+    border-bottom:1px solid rgba(236,226,198,0.3);
+    padding-bottom:0.15rem;
+    width:max-content;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .footer-links a:hover{ color:#d98e6b; border-color:#d98e6b; }
+  .footer-bottom{
+    padding:1.2rem 1.5rem 1.8rem;
+    border-top:1px solid rgba(236,226,198,0.15);
+  }
+  .footer-bottom p{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    color:#9aa49c;
+    margin:0;
+  }
+
+  .dedication{
+    padding:1.6rem 1.5rem 0;
+    text-align:center;
+    border-top:1px solid rgba(236,226,198,0.15);
+  }
+  .dedication p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:0.95rem;
+    color:#c9c0a4;
+    margin:0;
+    letter-spacing:0.01em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; animation:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="#top">JASON FINK<span class="wordmark-dot">.</span></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#books">Books</a>
+      <a href="#notes">Field Notes</a>
+      <a href="#free">Free Fiction</a>
+      <a href="#find">Find Me</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section id="top" class="hero">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Novelist · Short-Story Award Winner · Recovering Everything-ist</p>
+      <h1 class="hero-title">Stories from a man who spent his <em>career</em> making the world a little less terrible, and his evenings making it a little more absurd.</h1>
+      <p class="hero-sub">Jason Fink writes science fiction, short stories, and urban fantasy in whatever hours are left over after public health work, parenting, and a Peace Corps tour that involved guinea worms.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#books">See the books</a>
+        <a class="btn btn-ghost" href="https://www.royalroad.com/profile/344490/fictions" target="_blank" rel="noopener">Read free fiction ↗</a>
+      </div>
+    </div>
+    <div class="hero-stamp" aria-hidden="true">field&#8209;tested<br>fiction</div>
+  </section>
+
+  <section id="notes" class="notes">
+    <div class="wrap">
+      <p class="eyebrow">Field Notes</p>
+      <h2>A brief, mostly true history</h2>
+      <div class="notes-body">
+        <p>I split my childhood between Berkeley and rural Oklahoma, which is its own kind of origin story. Later I lived in Tunisia, studied in France, and spent two years in Mauritania with the Peace Corps working on guinea-worm eradication alongside the Carter Center<button class="fn-mark" data-fn="1" aria-expanded="false" aria-controls="fn1">¹</button> — a sentence that still ends most conversations at parties. After that I helped run the first elementary school for the Ba'Aka community in the Central African Republic, then came home and taught at an inner-city elementary school for a while.</p>
+        <span id="fn1" class="fn-note">True story. I have never once explained guinea worm disease at a dinner party without someone quietly putting their fork down.</span>
+        <p>Apparently that wasn't enough acronyms, so I went to medical school, picked up a Master's in Health Service Administration, and now work in public health and raise kids in Seattle<button class="fn-mark" data-fn="2" aria-expanded="false" aria-controls="fn2">²</button>. Far less exciting on paper. Better coffee, though.</p>
+        <span id="fn2" class="fn-note">For the record: never wrangled an actual gorilla. Tracked a few, once. The "herded elephants" claim is similarly aspirational.</span>
+        <p>I've been writing the entire time — less because I'm inspired and more because the stories don't really ask permission first.<button class="fn-mark" data-fn="3" aria-expanded="false" aria-controls="fn3">³</button> A few of the short pieces have won awards through the Needle in the Hay writing community. Three books have made it all the way to "finished," which I consider a personal record.</p>
+        <span id="fn3" class="fn-note">This is also the official explanation for why a novel about a sentient prosthetic arm comes in under 150 pages.</span>
+      </div>
+
+      <div class="passport" role="list" aria-label="Places that shaped the work">
+        <div class="stamp" role="listitem" style="--r:-4deg">
+          <div class="code">BERK / OKC</div>
+          <div class="place">Berkeley &amp; rural Oklahoma</div>
+          <hr><div class="what">Childhood, two very different worlds</div>
+        </div>
+        <div class="stamp" role="listitem" style="--r:3deg">
+          <div class="code">TUN</div>
+          <div class="place">Tunisia</div>
+          <hr><div class="what">High school, first time abroad</div>
+        </div>
+        <div class="stamp" role="listitem" style="--r:-2deg">
+          <div class="code">PAR</div>
+          <div class="place">France</div>
+          <hr><div class="what">A college quarter in Paris</div>
+        </div>
+        <div class="stamp" role="listitem" style="--r:5deg">
+          <div class="code">NKC</div>
+          <div class="place">Mauritania</div>
+          <hr><div class="what">Peace Corps, guinea-worm eradication</div>
+        </div>
+        <div class="stamp" role="listitem" style="--r:-3deg">
+          <div class="code">BGF</div>
+          <div class="place">Central African Republic</div>
+          <hr><div class="what">Built a school for Ba'Aka kids</div>
+        </div>
+        <div class="stamp" role="listitem" style="--r:2deg">
+          <div class="code">SEA</div>
+          <div class="place">Seattle</div>
+          <hr><div class="what">MD, MHSA, public health, parenting, novels</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="books" class="books">
+    <div class="wrap">
+      <p class="eyebrow">The Books</p>
+      <h2>Three books. Three very different itches.</h2>
+      <p class="section-sub">A comedic sci-fi novella, a genre-hopping short story collection, and an urban fantasy about what happens after you've already saved the world once.</p>
+
+      <div class="book-grid">
+
+        <article class="book-card book-quantum">
+          <div class="book-cover">
+            <div>
+              <p class="book-tag">Sci-Fi · Novella</p>
+              <h3>Quantum Prosthetics</h3>
+            </div>
+            <p class="book-meta">2017 · 145 pages</p>
+          </div>
+          <div class="book-body">
+            <p>Surprisingly, the Singularity didn't start with the internet — it started with an amputee. After a freak accident costs a grad student his arm and most of his dignity, his attempt to build the perfect replacement accidentally produces something else entirely: an AI version of himself, equally convinced it's the real one. Part comedy, part identity crisis, told as a long string of tangents about what actually makes someone human.</p>
+            <a class="btn btn-primary" href="https://www.amazon.com/dp/1522008594" target="_blank" rel="noopener">Buy on Amazon ↗</a>
+          </div>
+        </article>
+
+        <article class="book-card book-shorts">
+          <div class="book-cover">
+            <div>
+              <p class="book-tag">Short Story Collection</p>
+              <h3>Selected Shorts (And Some Pants)</h3>
+            </div>
+            <p class="book-meta">2020 · 20 stories</p>
+          </div>
+          <div class="book-body">
+            <p>A few years' worth of short fiction, gathered up because finishing a single novel was never really the point. Genres collide on purpose: a tattoo with more to say than its owner, a real-estate scheme aimed at the Moon, the quiet aftermath of hunting a killer in a warzone. Several stories are award winners from the Needle in the Hay writing community — all of them came from the same restless brain.</p>
+            <a class="btn btn-primary" href="https://www.amazon.com/dp/B08BTN8MH6" target="_blank" rel="noopener">Buy on Amazon ↗</a>
+          </div>
+        </article>
+
+        <article class="book-card book-jasmine">
+          <div class="book-cover">
+            <div>
+              <p class="book-tag">Urban Fantasy</p>
+              <h3>Jasmine Cowl and the Salagi Talking Stick</h3>
+            </div>
+            <p class="book-meta">2010 · Novel</p>
+          </div>
+          <div class="book-body">
+            <p>Fifteen years ago, Jasmine Cowl and her friends saved the world. These days she's got a desk job, a family, and PTA meetings — and she thought the magic was behind her. She's wrong. Disgruntled gnomes, a car with opinions of its own, and a wand worth fighting for drag her back into a fight that's bigger than she remembers. This time, what she stands to lose isn't the world. It's her kids.</p>
+            <a class="btn btn-primary" href="https://www.amazon.com/dp/1522008527" target="_blank" rel="noopener">Buy on Amazon ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="free" class="free-fiction">
+    <div class="wrap">
+      <p class="eyebrow">Also On The Internet</p>
+      <h2>Serialized fiction, free to read</h2>
+      <p class="free-intro">Between books, Jason posts ongoing fiction on Royal Road — the kind of thing that updates faster than a novel and doesn't wait around for an editor's permission.</p>
+
+      <div class="serial-grid">
+        <article class="serial-card">
+          <p class="serial-tag">Sci-Fi · Serial</p>
+          <h3>The Moon, It Was</h3>
+          <p>What would it actually take to move the moon to Mars — and why would anyone bother? A scout team patrols a scorched, strange frontier looking for an answer. An expanded, ongoing version of the short story from <em>Selected Shorts</em>.</p>
+          <a class="serial-link" href="https://www.royalroad.com/fiction/64856/the-moon-it-was" target="_blank" rel="noopener">Read on Royal Road ↗</a>
+        </article>
+
+        <article class="serial-card serial-memory">
+          <p class="serial-tag">Ongoing · Written In Memory</p>
+          <h3>Building Character: The Future History of Sage</h3>
+          <p>Jason's son Sage was killed in a car accident in 2023, at twenty years old. This ongoing series imagines him still alive — vignettes of the different lives he might have lived, some funny, some sad, all of them keeping him here a little longer. It opens with his obituary.</p>
+          <a class="serial-link" href="https://www.royalroad.com/fiction/77139/building-character-the-future-history-of-sage" target="_blank" rel="noopener">Read on Royal Road ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="find" class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-wordmark">JASON FINK</p>
+      <p class="footer-tag">Author. Public health professional. Recovering gorilla-wrangler (allegedly).</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.amazon.com/stores/Jason-Fink/author/B013Z2JAB4" target="_blank" rel="noopener">Amazon Author Page ↗</a>
+      <a href="https://www.royalroad.com/profile/344490/fictions" target="_blank" rel="noopener">Royal Road ↗</a>
+      <a href="https://www.goodreads.com/author/show/14222080.Jason_Fink" target="_blank" rel="noopener">Goodreads ↗</a>
+    </div>
+  </div>
+  <div class="dedication">
+    <p>For Sage Phoenix Corlett Waters, 2003–2023. The wave returns to the ocean.</p>
+  </div>
+  <div class="wrap footer-bottom">
+    <p>© 2026 Jason Fink. Built from field notes, footnotes, and a stubborn refusal to write an artist statement.</p>
+  </div>
+</footer>
+
+<script>
+  // footnote toggles
+  document.querySelectorAll('.fn-mark').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var note = document.getElementById(btn.getAttribute('aria-controls'));
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      note.classList.toggle('open', !open);
+    });
+  });
+
+  // stamp reveal on scroll
+  var stamps = document.querySelectorAll('.stamp');
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    stamps.forEach(function(s){ obs.observe(s); });
+  } else {
+    stamps.forEach(function(s){ s.classList.add('in-view'); });
+  }
+</script>
+</body>
+</html>
